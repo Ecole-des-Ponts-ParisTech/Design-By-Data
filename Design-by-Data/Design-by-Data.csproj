@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Plankton">
+      <HintPath>..\..\..\..\..\AppData\Roaming\Grasshopper\Libraries\Plankton.dll</HintPath>
+    </Reference>
+    <Reference Include="PlanktonGh">
+      <HintPath>..\..\..\..\..\AppData\Roaming\Grasshopper\Libraries\PlanktonGh.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -56,19 +62,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Grasshopper Component\CreateAugmentedMesh.cs" />
     <Compile Include="Grasshopper Component\DesignbyDataComponent.cs" />
     <Compile Include="DesignbyDataInfo.cs" />
     <Compile Include="Grasshopper Component\DrawMultipleCrossSections.cs" />
     <Compile Include="Grasshopper Component\DrawPlanarCrossSection.cs" />
+    <Compile Include="Grasshopper Component\MeshToLines.cs" />
     <Compile Include="Gridshell\ICrossSection.cs" />
     <Compile Include="Gridshell\RHCrossSection.cs" />
+    <Compile Include="Mesh\Halfedge\HalfedgeMeshAugmented.cs" />
     <Compile Include="Mesh\UVMesh.cs" />
     <Compile Include="Mesh\UVMeshEdge.cs" />
     <Compile Include="Mesh\UVMeshFace.cs" />
     <Compile Include="Mesh\UVMeshVertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Grasshopper files\DrawCrossSection.gh" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

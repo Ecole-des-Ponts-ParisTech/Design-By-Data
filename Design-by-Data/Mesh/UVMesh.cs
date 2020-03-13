@@ -95,13 +95,41 @@ namespace Design_by_Data.Mesh
                 Faces.Add(new UVMeshFace(i, this));
             }
         }
+        /// <summary>
+        /// Add the edges of the mesh
+        /// </summary>
         public void AddEdges()
         {
+            int counter = 0;
+            for(int i=0;i<(NU+1);i++)
+            {
+                for (int j = 0; j < (NV); j++)
+                {
+                    Edges.Add(new UVMeshEdge(this, this.Vertices[j * (NU + 1) + i], this.Vertices[(j + 1) * (NU + 1) + i], counter));
+                    counter++;
+                }
+            }
             for (int i = 0; i < (NV+1); i++)
             {
-                //Edges.Add(new UVMeshEdge(this,));
-                
+                for (int j = 0; j < (NU); j++)
+                {
+                    Edges.Add(new UVMeshEdge(this, this.Vertices[j * (NU + 1) + i], this.Vertices[j * (NU + 1) + i+1], counter));
+                    counter++;
+                }
             }
+        }
+        /// <summary>
+        /// Returns a list of lines
+        /// </summary>
+        /// <returns></returns>
+        public List<Line> ToLines()
+        {
+            List<Line> result = new List<Line>();
+            foreach (UVMeshEdge edge in Edges)
+            {
+                result.Add(edge.ToLine());
+            }
+            return (result);
         }
         #endregion
     }
