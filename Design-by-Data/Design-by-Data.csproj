@@ -67,6 +67,7 @@
     <Compile Include="DesignbyDataInfo.cs" />
     <Compile Include="Grasshopper Component\DrawMultipleCrossSections.cs" />
     <Compile Include="Grasshopper Component\DrawPlanarCrossSection.cs" />
+    <Compile Include="Grasshopper Component\LaplacianSmoothing.cs" />
     <Compile Include="Grasshopper Component\MeshToLines.cs" />
     <Compile Include="Gridshell\ICrossSection.cs" />
     <Compile Include="Gridshell\RHCrossSection.cs" />
@@ -79,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Grasshopper files\DrawCrossSection.gh" />
+    <None Include="Grasshopper files\Laplacian Smoothing.gh" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
