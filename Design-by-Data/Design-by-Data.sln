@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Design-by-Data", "Design-by-Data.csproj", "{DC4B0FC5-9280-4F5D-896C-4FAA96770C71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Courses.OOP", "..\Courses.OOP\Courses.OOP.csproj", "{29E4C790-AA33-4BED-B9DF-1866D298EA70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DC4B0FC5-9280-4F5D-896C-4FAA96770C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC4B0FC5-9280-4F5D-896C-4FAA96770C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC4B0FC5-9280-4F5D-896C-4FAA96770C71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E4C790-AA33-4BED-B9DF-1866D298EA70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E4C790-AA33-4BED-B9DF-1866D298EA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E4C790-AA33-4BED-B9DF-1866D298EA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E4C790-AA33-4BED-B9DF-1866D298EA70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net48</TargetFrameworks>
+    <PackageId>Courses.OOP</PackageId>
+    <Description>Courses for OOP, DbD.</Description>
+    <PackageTags>$(PackageTags);Simulation;Grasshopper;Parametric;</PackageTags>
+    <IncludeBuildOutput>False</IncludeBuildOutput>
+    <StartAction>Program</StartAction>
+    <!--Activate WPF-->
+    <UseWPF>true</UseWPF>
+    <!--Include non-string resources-->
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <CopyLocalNugetArtifacts>$(Configuration.Contains('Debug'))</CopyLocalNugetArtifacts>
+    <CopyLocalLockFileAssemblies>$(Configuration.Contains('Debug'))</CopyLocalLockFileAssemblies>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--Includes property changed dependencies-->
+    <PackageReference Include="AutoProperties.Fody" Version="1.23.0" PrivateAssets="all" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.6" PrivateAssets="all" />
+    <!--Includes documentation filtration dependencies-->
+    <PackageReference Include="FilterDocumentation.Fody" Version="3.1.1" PrivateAssets="all" />
+    <!--Needed to include non-string resources-->
+    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
+    <PackageReference Include="Grasshopper" Version="0.9.76" PrivateAssets="All" />
+    <PackageReference Include="RhinoCommon" Version="5.12.50810.13095" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    --><!-- Assets --><!--
+    <EmbeddedResource Include="Fonts\*.otf" />
+    <EmbeddedResource Include="Fonts\*.ttf" />
+    <None Remove="Resources\*.png" />
+    <EmbeddedResource Include="Resources\*.png" />
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <None Include="FodyWeavers.xml" />
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <Compile Update="Resources\AssemblyResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AssemblyResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <EmbeddedResource Update="Resources\AssemblyResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AssemblyResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>-->
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeGHAInPackage</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="IncludeGHAInPackage">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(TargetDir)$(AssemblyName).gha" PackagePath="lib\$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="$(DocumentationFile)" PackagePath="lib\$(TargetFramework)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="ConvertToGHA" AfterTargets="Build">
+    <Message Importance="high" Text="Converting $(TargetPath) to GHA - $(TargetDir)$(AssemblyName).gha" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(TargetDir)$(AssemblyName).gha" />
+    <Delete Files="$(TargetPath)" />
+  </Target>
+
+  <Target Name="PreventGrasshopperSDKCopyLocal" AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'Grasshopper' OR '%(ReferenceCopyLocalPaths.NuGetPackageId)' == 'RhinoCommon'" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="DebugStuffBefore" BeforeTargets="Build">
+    <Message Importance="high" Text="CopyLocalNugetArtifacts Before? $(CopyLocalNugetArtifacts)" />
+    <Message Importance="high" Text="CopyLocalLockFileAssemblies Before? $(CopyLocalLockFileAssemblies)" />
+  </Target>
+
+  <Target Name="DebugStuffAfter" AfterTargets="Build">
+    <Message Importance="high" Text="CopyLocalNugetArtifacts After? $(CopyLocalNugetArtifacts)" />
+    <Message Importance="high" Text="CopyLocalLockFileAssemblies After? $(CopyLocalLockFileAssemblies)" />
+  </Target>
+
+</Project>
